@@ -1,0 +1,10 @@
+version: "2"
+services:
+  fms:
+    build:
+      context: .
+    ports:
+      - "80:8000" # Expose container on localhost:80
+    environment:
+      PORT: "8000"
+      DEBUG: "1" # Set to 0 to run in production mode. BEWARE: production mode might affect prod DB if you have the permissions.

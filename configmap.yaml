@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "app.fullname" . }}
+  labels: {{ include "app.labels" . | nindent 4 }}
+data:
+  DBPORT: {{ .Values.environment.dbport }}
+  DBHOST: {{ .Values.environment.dbhost }}
+  DBUSER: {{ .Values.environment.dbuser }}
+  DBPASS: {{ .Values.environment.dbpass }}
+  DBNAME: {{ .Values.environment.dbname }}
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "app.fullname" . }}-pq
+  labels: {{ include "app.labels" . | nindent 4 }}
+data:
+  POSTGRES_DB: {{ .Values.environment.dbname }}
+  POSTGRES_USER: {{ .Values.environment.dbuser }}
+  POSTGRES_PASSWORD: {{ .Values.environment.dbpass }}
